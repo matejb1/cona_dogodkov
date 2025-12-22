@@ -10,3 +10,9 @@ npm --version # 11.6.2
 ```
 
 `ui` ... uporablja vite
+
+samo `ui`: formatiranje kode prettier
+
+```bash
+npx prettier . --write
+```
