@@ -30,7 +30,10 @@ export class LoginComponent {
     this.apiLoginService.login(this.loginCredentials).subscribe((item) => {
       this.populateStates(item);
       if (this.isValid() && !this.isError() && this.isSubmitted()) {
-        setTimeout(() => this.router.navigate(['/']), 1000);
+        setTimeout(() => {
+          ApiLoginService.isSubjectLoaded.next(true);
+          this.router.navigate(['/']);
+        }, 1000);
       }
     });
   }

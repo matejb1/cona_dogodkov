@@ -1,9 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { LoginModel } from '../../interfaces/LoginModel';
 import { LoginStatusModel } from '../../interfaces/LoginStatusModel';
 import { EnvService } from '../../core/env-service/env-service';
+import { jwtDecode } from 'jwt-decode';
+import { ClaimsModel } from '../../interfaces/ClaimsModel';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,8 @@ export class ApiLoginService {
   private TOKEN: string = 'TOKEN';
   private http: HttpClient = inject(HttpClient);
   private envService: EnvService = inject(EnvService);
+
+  static isSubjectLoaded: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public login(loginCredentials: LoginModel): Observable<LoginStatusModel> {
     let result: LoginStatusModel = { isError: false, isSubmitted: true, isValid: false };
@@ -67,5 +71,13 @@ export class ApiLoginService {
 
   public removeToken(): void {
     sessionStorage.removeItem(this.TOKEN);
+  }
+
+  public getClaims(): ClaimsModel | undefined {
+    let token = this.getToken();
+    if (token == null) {
+      return undefined;
+    }
+    return jwtDecode(token) as ClaimsModel;
   }
 }
