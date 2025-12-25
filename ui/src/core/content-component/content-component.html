@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid p-4" style="min-height: 70vh">
   <h1>Cona dogodkov</h1>
 
   <div class="row g-3 align-items-center">
@@ -12,4 +12,24 @@
       <input type="submit" class="btn btn-outline-primary" value="Išči" />
     </div>
   </div>
+  <br />
+
+  @if (isLoading()) {
+    <div class="container text-center">
+      <app-loading-component />
+    </div>
+  } @else {
+    <div class="container-fluid">
+      <div class="row text-center">
+        @for (item of this.eventBasicInfoList; track item.id) {
+          <div class="col-auto">
+            <app-event-card-component [value]="item" />
+          </div>
+        }
+      </div>
+      @if (this.eventBasicInfoList.length == 0) {
+        <p>Trenutno ni novih dogodkov.</p>
+      }
+    </div>
+  }
 </div>

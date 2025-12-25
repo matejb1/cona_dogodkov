@@ -1,0 +1,7 @@
+<div class="card" style="width: 18rem">
+  <div class="card-body">
+    <h5 class="card-title">{{ value().name }}</h5>
+    <p class="card-text">{{ value().location }}: {{ value().date | date: DATE_FORMAT }}</p>
+    <a routerLink="/events/{{ value().id }}" class="btn btn-info">Preberi več</a>
+  </div>
+</div>

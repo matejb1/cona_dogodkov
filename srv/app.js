@@ -1,8 +1,11 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
 const port = 3000
 
-const eventsRouter = require('./routes/events')
+const eventsRouter = require('./routes/eventsRoutes')
+
+app.use(cors())
 
 app.use("/api/events", eventsRouter)
 
