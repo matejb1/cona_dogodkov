@@ -2,16 +2,16 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EventBasicInfoModel } from '../../interfaces/EventBasicInfoModel';
+import { EnvService } from '../../core/env-service/env-service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ApiEvents {
+export class ApiEventsService {
   private http: HttpClient = inject(HttpClient);
-
-  private API_URL: string = 'http://localhost:3000/api';
+  private envService: EnvService = inject(EnvService);
 
   public getBasicInfoEvents(): Observable<EventBasicInfoModel[]> {
-    return this.http.get<EventBasicInfoModel[]>(this.API_URL + '/events');
+    return this.http.get<EventBasicInfoModel[]>(this.envService.getConfig()?.API_URL + '/events');
   }
 }

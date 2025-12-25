@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApiLogin } from './api-login';
+import { EnvService } from './env-service';
 
-describe('ApiLogin', () => {
-  let service: ApiLogin;
+describe('EnvService', () => {
+  let service: EnvService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiLogin);
+    service = TestBed.inject(EnvService);
   });
 
   it('should be created', () => {
