@@ -1,0 +1,46 @@
+<h1>Login</h1>
+
+@if (!isLoading() && isValid() && !isError()) {
+  <div class="alert alert-success">Prijava uspešna.</div>
+} @else if (!isLoading() && isValid() && isError()) {
+  <div class="alert alert-danger">Vnesili ste napačno uporabniško ime ali geslo.</div>
+} @else if (!isLoading() && isSubmitted() && !isValid()) {
+  <div class="alert alert-danger">Pozabili ste vnesti uporabniško ime ali geslo.</div>
+}
+
+<form>
+  <div class="mb-3 row">
+    <label for="username" class="col-2 col-form-label">Vnesite uporabniško ime: </label>
+    <div class="col-sm-5">
+      <input
+        type="text"
+        [(ngModel)]="loginCredentials.username"
+        name="username"
+        class="form-control"
+        id="username"
+        placeholder="npr. jnovak"
+        maxlength="20"
+      />
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="password" class="col-2 col-form-label">Vnesite geslo: </label>
+    <div class="col-sm-5">
+      <input
+        [(ngModel)]="loginCredentials.password"
+        name="password"
+        type="password"
+        class="form-control"
+        id="password"
+        maxlength="20"
+      />
+    </div>
+  </div>
+</form>
+<button class="btn btn-warning" (click)="login()">Prijava</button>
+
+@if (isLoading()) {
+  <div class="container text-center">
+    <app-loading-component />
+  </div>
+}
