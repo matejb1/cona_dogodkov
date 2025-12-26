@@ -2,6 +2,9 @@
   <div class="card-body">
     <h5 class="card-title">{{ value().name }}</h5>
     <p class="card-text">{{ value().location }}: {{ value().date | date: DATE_FORMAT }}</p>
-    <a routerLink="/events/{{ value().id }}" class="btn btn-info">Preberi več</a>
+    <a routerLink="/event/{{ value().id }}" class="btn btn-info">Preberi več</a>
+    @if (isUserLoggedIn) {
+      <a routerLink="/admin/edit-event/{{ value().id }}" class="btn btn-warning ms-3">Uredi</a>
+    }
   </div>
 </div>

@@ -1,0 +1,57 @@
+<form>
+  <h1>{{ model().name }}</h1>
+  <legend>Osnovno</legend>
+  <div class="mb-3 row">
+    <label for="eventType" class="col-form-label col-2">Tip dogodka:</label>
+    <div class="col-sm-4">
+      <input id="eventType" class="form-control disabled" disabled value="{{ model().nameEventType }}" />
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="summary" class="col-form-label col-2">Povzetek:</label>
+    <textarea id="summary" class="form-control" disabled>{{ model().summary }}</textarea>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="url" class="col-form-label col-2">Povezava do dogodka:</label>
+    <div class="col-sm-4">
+      <a id="url" class="form-control link-primary" disabled href="{{ model().link }}">{{ model().link }}</a>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="price" class="col-form-label col-2">Cena:</label>
+    <div class="col-sm-2">
+      <input
+        id="price"
+        class="form-control disabled {{ model().price == 0 ? 'bg-danger' : '' }}"
+        disabled
+        value="{{ model().price == 0 ? 'BREZPLAČNO. Vstop je prost.' : model().price + '€' }}"
+      />
+    </div>
+  </div>
+
+  <legend>Kraj in datum</legend>
+
+  <div class="mb-3 row">
+    <label for="date" class="col-form-label col-2">Datum dogodka:</label>
+    <div class="col-sm-4">
+      <input id="date" class="form-control disabled" disabled value="{{ model().date | date: DATE_FORMAT }}" />
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="time" class="col-form-label col-2">Čas dogodka:</label>
+    <div class="col-sm-4">
+      <input id="time" class="form-control disabled" disabled value="{{ model().time.slice(0, -3) }}" />
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="location" class="col-form-label col-2">Lokacija:</label>
+    <div class="col-sm-4">
+      <input id="location" class="form-control disabled" disabled value="{{ model().location }}" />
+    </div>
+  </div>
+</form>

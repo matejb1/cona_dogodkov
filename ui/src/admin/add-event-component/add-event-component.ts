@@ -18,7 +18,8 @@ export class AddEventComponent {
   private apiEventService: ApiEventService = inject(ApiEventService);
   private router: Router = inject(Router);
   protected eventModel: EventDetailsModel = {
-    eventType: -1,
+    nameEventType: '',
+    idEventType: -1,
     date: '',
     link: '',
     name: '',
@@ -34,7 +35,7 @@ export class AddEventComponent {
   protected isSubmitted: WritableSignal<boolean> = signal<boolean>(false);
 
   protected setIdEventType(id: number): void {
-    this.eventModel.eventType = id;
+    this.eventModel.idEventType = id;
   }
 
   protected addEvent(): void {

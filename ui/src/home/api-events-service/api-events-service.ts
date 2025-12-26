@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { EventBasicInfoModel } from '../../interfaces/EventBasicInfoModel';
 import { EnvService } from '../../core/env-service/env-service';
 import { SearchModel } from '../../interfaces/SearchModel';
+import { EventDetailsModel } from '../../interfaces/EventDetailsModel';
 
 @Injectable({
   providedIn: 'root',
@@ -18,5 +19,9 @@ export class ApiEventsService {
 
   public searchBasicInfoEvents(search: SearchModel): Observable<EventBasicInfoModel[]> {
     return this.http.post<EventBasicInfoModel[]>(this.envService.getConfig()?.API_URL + '/events/search', search);
+  }
+
+  public getEventDetails(id: number): Observable<EventDetailsModel> {
+    return this.http.get<EventDetailsModel>(this.envService.getConfig()?.API_URL + `/events/${id}`);
   }
 }

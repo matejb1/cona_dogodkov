@@ -2,6 +2,28 @@
 const express = require('express');
 const timers = require("node:timers");
 const router = express.Router();
+const dataEventsTypes= [
+    {
+        id: 1,
+        name: "Kulturni",
+    },
+    {
+        id: 2,
+        name: "Športni",
+    },
+    {
+        id: 3,
+        name: "Izobraževalni",
+    },
+    {
+        id: 4,
+        name: "Verski",
+    },
+    {
+        id: 5,
+        name: "Zabavni",
+    }
+];
 
 const dataCards = [
     {
@@ -81,6 +103,24 @@ const dataDetails = [
 
 router.get('/', (req, res) => {
     setTimeout(function(){res.json(dataCards.slice(-10))}, 2000);
+    // setTimeout(function(){res.json([])}, 2000);
+    // res.json(data)
+})
+
+router.get('/:id', (req, res) => {
+    let id = parseInt(req.params['id']);
+    var searched;
+    for(let item of dataDetails) {
+        if(item.id === id) {
+            searched = JSON.parse(JSON.stringify(item));
+
+            let nameEventType = dataEventsTypes.find(t => t.id === item.idEventType).name;
+            searched.nameEventType = nameEventType;
+            break;
+        }
+    }
+
+    setTimeout(function(){res.json(searched)}, 2000);
     // setTimeout(function(){res.json([])}, 2000);
     // res.json(data)
 })

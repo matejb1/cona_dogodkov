@@ -34,7 +34,7 @@ export class ApiEventService {
     }
 
     if (
-      model.eventType <= 0 ||
+      model.idEventType <= 0 ||
       !model.time ||
       !model.location ||
       !model.date ||

@@ -5,6 +5,7 @@ import { ApiEventsService } from '../api-events-service/api-events-service';
 import { EventBasicInfoModel } from '../../interfaces/EventBasicInfoModel';
 import { SearchModel } from '../../interfaces/SearchModel';
 import { FormsModule } from '@angular/forms';
+import { ApiLoginService } from '../../login/api-login-service/api-login-service';
 
 @Component({
   selector: 'app-home-component',
@@ -14,10 +15,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   private apiEvents: ApiEventsService = inject(ApiEventsService);
+
   protected eventBasicInfoList: EventBasicInfoModel[] = [];
-
   protected isLoading: WritableSignal<Boolean> = signal(true);
-
   protected searchModel: SearchModel = { search: '' };
 
   ngOnInit(): void {
