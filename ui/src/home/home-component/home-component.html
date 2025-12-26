@@ -5,10 +5,10 @@
     <label for="search" class="col-form-label">Vnesite naslov dogodka:</label>
   </div>
   <div class="col-auto">
-    <input type="text" id="search" class="form-control" />
+    <input type="text" id="search" class="form-control" [(ngModel)]="searchModel.search" />
   </div>
   <div class="col-auto">
-    <input type="submit" class="btn btn-outline-primary" value="Išči" />
+    <button class="btn btn-outline-primary" value="Išči" (click)="searchEvents()">Išči</button>
   </div>
 </div>
 <br />

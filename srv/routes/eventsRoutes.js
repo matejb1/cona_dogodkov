@@ -80,11 +80,34 @@ const dataDetails = [
 
 
 router.get('/', (req, res) => {
-    setTimeout(function(){res.json(dataCards)}, 2000);
+    setTimeout(function(){res.json(dataCards.slice(-10))}, 2000);
     // setTimeout(function(){res.json([])}, 2000);
     // res.json(data)
 })
 
+
+router.post('/search', (req, res) => {
+
+    let filteredItems = [];
+
+
+    if(!req.body || !req.body.search || req.body.search.trim().length === 0) {
+        filteredItems = dataCards;
+    }
+    else {
+        let search = req.body.search.toLowerCase();
+        for(let item of dataCards) {
+            if(item.name.toLowerCase().includes(search)) {
+                filteredItems.push(item);
+            }
+        }
+    }
+
+
+    setTimeout(function(){res.json(filteredItems.slice(-10))}, 2000);
+    // setTimeout(function(){res.json([])}, 2000);
+    // res.json(data)
+})
 
 router.post('/', (req, res) => {
     if(req.get("Authorization") === undefined || !req.body) {
