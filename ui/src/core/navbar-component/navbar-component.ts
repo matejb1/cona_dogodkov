@@ -24,7 +24,6 @@ export class NavbarComponent implements OnInit {
       this.claims = this.apiLoginService.getClaims();
       let statusUserLogin: boolean = this.claims != undefined;
       this.isUserLoggedIn.set(statusUserLogin);
-      ApiLoginService.isSubjectLoaded.next(statusUserLogin);
     });
   }
 

@@ -40,7 +40,5 @@
 <button class="btn btn-warning" (click)="login()">Prijava</button>
 
 @if (isLoading()) {
-  <div class="container text-center">
-    <app-loading-component />
-  </div>
+  <app-loading-component />
 }

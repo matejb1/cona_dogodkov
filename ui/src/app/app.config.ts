@@ -2,17 +2,15 @@ import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalE
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { EnvService } from '../core/env-service/env-service';
+import { authInterceptor } from '../core/auth-interceptor/auth-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(),
-    provideAppInitializer(() => {
-      const envService: EnvService = inject(EnvService);
-      return envService.loadConfig();
-    }),
+    provideHttpClient(withInterceptors([authInterceptor])),
+    provideAppInitializer(() => inject(EnvService).loadConfig()),
   ],
 };

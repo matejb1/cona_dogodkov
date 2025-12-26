@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { LoginModel } from '../../interfaces/LoginModel';
-import { LoginStatusModel } from '../../interfaces/LoginStatusModel';
+import { StatusModel } from '../../interfaces/StatusModel';
 import { EnvService } from '../../core/env-service/env-service';
 import { jwtDecode } from 'jwt-decode';
 import { ClaimsModel } from '../../interfaces/ClaimsModel';
@@ -17,8 +17,8 @@ export class ApiLoginService {
 
   static isSubjectLoaded: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  public login(loginCredentials: LoginModel): Observable<LoginStatusModel> {
-    let result: LoginStatusModel = { isError: false, isSubmitted: true, isValid: false };
+  public login(loginCredentials: LoginModel): Observable<StatusModel> {
+    let result: StatusModel = { isError: false, isSubmitted: true, isValid: false };
 
     if (!this.isLoginValid(loginCredentials)) {
       return of(result);

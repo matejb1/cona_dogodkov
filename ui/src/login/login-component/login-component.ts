@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ApiLoginService } from '../api-login-service/api-login-service';
 import { LoadingComponent } from '../../core/loading-component/loading-component';
 import { Router } from '@angular/router';
-import { LoginStatusModel } from '../../interfaces/LoginStatusModel';
+import { StatusModel } from '../../interfaces/StatusModel';
 
 @Component({
   selector: 'app-login-component',
@@ -38,7 +38,7 @@ export class LoginComponent {
     });
   }
 
-  private populateStates(item: LoginStatusModel): void {
+  private populateStates(item: StatusModel): void {
     this.isValid.set(item.isValid);
     this.isError.set(item.isError);
     this.isSubmitted.set(item.isSubmitted);
