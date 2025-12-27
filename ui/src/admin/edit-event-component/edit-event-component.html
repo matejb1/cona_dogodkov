@@ -1,0 +1,144 @@
+@if (isFirstTimeLoad()) {
+  <app-loading-component />
+} @else {
+  <h1>Uredi dogodek</h1>
+
+  <form>
+    <fieldset>
+      <legend>Osnovno</legend>
+
+      <div class="mb-3 row">
+        <label for="name" class="col-2 col-form-label">Ime dogodka: </label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            id="name"
+            placeholder="npr. Gremo v hribe"
+            maxlength="64"
+            [(ngModel)]="eventModel.name"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label for="event-type" class="col-2 col-form-label">Tip dogodka: </label>
+        <div class="col-sm-6">
+          <app-event-type-combobox-component
+            (outputEventTypeId)="setIdEventType($event)"
+            [selectedId]="eventModel.idEventType"
+            id="event-type"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label for="summary" class="col-2 col-form-label">Povzetek: </label>
+        <div class="col-sm-6">
+          <textarea
+            name="summary"
+            class="form-control"
+            id="summary"
+            placeholder="npr. Gremo v hribe"
+            cols="64"
+            rows="10"
+            [(ngModel)]="eventModel.summary"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label for="link" class="col-2 col-form-label">Povezava do dogodka: </label>
+
+        <div class="col-sm-6">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              name="link"
+              class="form-control"
+              id="link"
+              placeholder="npr. https://www.abc.com"
+              maxlength="1024"
+              [(ngModel)]="eventModel.link"
+            />
+            <span class="input-group-text" id="web-addon"><i class="bi bi-globe"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label for="price" class="col-2 col-form-label">Cena dogodka: </label>
+        <div class="col-sm-6">
+          <div class="input-group mb-3">
+            <input
+              type="number"
+              name="price"
+              class="form-control"
+              id="price"
+              placeholder="Če vstopnine ni, pustite polje prazno ali vpišite 0."
+              maxlength="8"
+              min="0"
+              max="2000"
+              [(ngModel)]="eventModel.price"
+            />
+            <span class="input-group-text" id="euro-addon"><i class="bi bi-currency-euro"></i></span>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Kraj in datum</legend>
+      <div class="mb-3 row">
+        <label for="date" class="col-2 col-form-label">Datum dogodka: </label>
+        <div class="col-sm-6">
+          <input type="date" name="date" class="form-control" id="date" [(ngModel)]="eventModel.date" />
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label for="time" class="col-2 col-form-label">Čas dogodka: </label>
+        <div class="col-sm-6">
+          <input type="time" name="time" class="form-control" id="time" [(ngModel)]="eventModel.time" />
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label for="location" class="col-2 col-form-label">Kraj dogodka: </label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            name="location"
+            class="form-control"
+            id="location"
+            placeholder="npr. Novo Mesto"
+            maxlength="64"
+            [(ngModel)]="eventModel.location"
+          />
+        </div>
+      </div>
+    </fieldset>
+    <div class="mb-3 row">
+      <div class="col-sm-2">
+        <button class="btn btn-warning" (click)="editEvent()">Popravi dogodek</button>
+      </div>
+
+      <div class="col-sm-2">
+        <button class="btn btn-danger" (click)="deleteEvent()">Izbriši dogodek</button>
+      </div>
+    </div>
+
+    @if (isLoading()) {
+      <app-loading-component />
+    }
+
+    @if (isValid() && isSubmitted() && !isError()) {
+      <div class="alert alert-success">Uspešno posodobljen ali izbrisan dogodek.</div>
+    } @else if (isValid() && isSubmitted() && isError()) {
+      <div class="alert alert-danger">Napaka na strežniku.</div>
+    } @else if (!isValid() && isSubmitted()) {
+      <div class="alert alert-danger">Dogodek ni veljaven.</div>
+    }
+  </form>
+}

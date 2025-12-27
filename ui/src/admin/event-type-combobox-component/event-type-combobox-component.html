@@ -1,5 +1,7 @@
-<select class="form-control" (change)="setEventTypeId($event)" [ngModel]="id">
+<select class="form-control" (change)="setEventTypeId($event)">
   @for (item of eventTypeList | async; track item.id) {
-    <option value="{{ item.id }}">{{ item.name }}</option>
+    <option value="{{ item.id }}" selected="{{ selectedId() === item.id }}">
+      {{ item.name }}
+    </option>
   }
 </select>

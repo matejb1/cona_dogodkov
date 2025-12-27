@@ -174,4 +174,59 @@ router.post('/', (req, res) => {
 })
 
 
+router.put('/:id', (req, res) => {
+    if(req.get("Authorization") === undefined || !req.body) {
+        res.status(500);
+        res.json({message:"Login failed."});
+        return;
+    }
+    let id = parseInt(req.params['id']);
+
+    for(var i = 0; i < dataDetails.length; i++) {
+        if(dataDetails[i].id === id) {
+            dataDetails[i] = req.body;
+
+            dataCards[i].date = dataDetails[i].date;
+            dataCards[i].name = dataDetails[i].name;
+            dataCards[i].location = dataDetails[i].location;
+            break;
+        }
+    }
+
+    if(i === dataDetails.length-1){
+        res.status(500);
+        res.json({message:"Login failed."});
+        return;
+    }
+
+
+    // res.json({status: "OK"})
+    setTimeout(function(){res.json({status: "OK"})}, 2000);
+})
+
+router.delete('/:id', (req, res) => {
+    if(req.get("Authorization") === undefined) {
+        res.status(500);
+        res.json({message:"Login failed."});
+        return;
+    }
+    let id = parseInt(req.params['id']);
+
+    for(var i = 0; i < dataDetails.length; i++) {
+        if(dataDetails[i].id === id) {
+            dataDetails.splice(i, 1);
+            dataCards.splice(i, 1);
+            break;
+        }
+    }
+    if(i === dataDetails.length-1){
+        res.status(500);
+        res.json({message:"Login failed."});
+        return;
+    }
+
+    // res.json({status: "OK"})
+    setTimeout(function(){res.json({status: "OK"})}, 2000);
+})
+
 module.exports = router;

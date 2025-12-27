@@ -1,4 +1,4 @@
-import { Component, inject, output, OutputEmitterRef } from '@angular/core';
+import { Component, inject, input, output, OutputEmitterRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EventTypeModel } from '../../interfaces/EventTypeModel';
 import { ApiEventTypeService } from '../api-event-type-service/api-event-type-service';
@@ -15,8 +15,7 @@ export class EventTypeComboboxComponent {
   private apiEventTypeService: ApiEventTypeService = inject(ApiEventTypeService);
   protected eventTypeList: Observable<EventTypeModel[]> = this.apiEventTypeService.getEventTypeList();
 
-  protected id: number = -1;
-
+  selectedId = input<number>(-1);
   protected outputEventTypeId: OutputEmitterRef<number> = output<number>();
 
   protected setEventTypeId(event: Event): void {
