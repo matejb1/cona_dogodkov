@@ -1,9 +1,9 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { ApiEventsService } from '../api-events-service/api-events-service';
+import { ApiEventsService } from '../../shared/api-events-service/api-events-service';
 import { EventDetailsModel } from '../../interfaces/EventDetailsModel';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { LoadingComponent } from '../../core/loading-component/loading-component';
+import { LoadingComponent } from '../../shared/loading-component/loading-component';
 
 @Component({
   selector: 'app-event-details-component',

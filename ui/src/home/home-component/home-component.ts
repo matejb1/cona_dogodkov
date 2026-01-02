@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { EventCardComponent } from '../event-card-component/event-card-component';
-import { LoadingComponent } from '../../core/loading-component/loading-component';
-import { ApiEventsService } from '../api-events-service/api-events-service';
+import { LoadingComponent } from '../../shared/loading-component/loading-component';
+import { ApiEventsService } from '../../shared/api-events-service/api-events-service';
 import { EventBasicInfoModel } from '../../interfaces/EventBasicInfoModel';
 import { SearchModel } from '../../interfaces/SearchModel';
 import { FormsModule } from '@angular/forms';

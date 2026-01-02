@@ -1,11 +1,11 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { EventTypeComboboxComponent } from '../event-type-combobox-component/event-type-combobox-component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoadingComponent } from '../../core/loading-component/loading-component';
+import { LoadingComponent } from '../../shared/loading-component/loading-component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventDetailsModel } from '../../interfaces/EventDetailsModel';
 import { StatusModel } from '../../interfaces/StatusModel';
-import { ApiEventsService } from '../../home/api-events-service/api-events-service';
+import { ApiEventsService } from '../../shared/api-events-service/api-events-service';
 import { Observable } from 'rxjs';
 
 @Component({

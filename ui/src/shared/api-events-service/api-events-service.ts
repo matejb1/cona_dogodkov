@@ -6,6 +6,7 @@ import { EnvService } from '../../core/env-service/env-service';
 import { SearchModel } from '../../interfaces/SearchModel';
 import { EventDetailsModel } from '../../interfaces/EventDetailsModel';
 import { StatusModel } from '../../interfaces/StatusModel';
+import { EventTypeModel } from '../../interfaces/EventTypeModel';
 
 @Injectable({
   providedIn: 'root',
@@ -56,6 +57,10 @@ export class ApiEventsService {
         return of(result);
       }),
     );
+  }
+
+  public getEventTypeList(): Observable<EventTypeModel[]> {
+    return this.http.get<EventTypeModel[]>(this.envService.getConfig()?.API_URL + '/event-types');
   }
 
   public addEvent(model: EventDetailsModel): Observable<StatusModel> {

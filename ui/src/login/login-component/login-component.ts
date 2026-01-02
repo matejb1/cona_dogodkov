@@ -2,7 +2,7 @@ import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { LoginModel } from '../../interfaces/LoginModel';
 import { FormsModule } from '@angular/forms';
 import { ApiLoginService } from '../api-login-service/api-login-service';
-import { LoadingComponent } from '../../core/loading-component/loading-component';
+import { LoadingComponent } from '../../shared/loading-component/loading-component';
 import { Router } from '@angular/router';
 import { StatusModel } from '../../interfaces/StatusModel';
 

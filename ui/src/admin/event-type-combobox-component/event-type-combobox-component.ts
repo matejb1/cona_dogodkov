@@ -1,9 +1,9 @@
 import { Component, inject, input, output, OutputEmitterRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EventTypeModel } from '../../interfaces/EventTypeModel';
-import { ApiEventTypeService } from '../api-event-type-service/api-event-type-service';
 import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {ApiEventsService} from '../../shared/api-events-service/api-events-service';
 
 @Component({
   selector: 'app-event-type-combobox-component',
@@ -12,8 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './event-type-combobox-component.css',
 })
 export class EventTypeComboboxComponent {
-  private apiEventTypeService: ApiEventTypeService = inject(ApiEventTypeService);
-  protected eventTypeList: Observable<EventTypeModel[]> = this.apiEventTypeService.getEventTypeList();
+  protected eventTypeList: Observable<EventTypeModel[]> = inject(ApiEventsService).getEventTypeList();
 
   selectedId = input<number>(-1);
   protected outputEventTypeId: OutputEmitterRef<number> = output<number>();
